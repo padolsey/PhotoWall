@@ -1,5 +1,7 @@
-
-
+/***
+ * @author James Padolsey
+ * @from http://github.com/jamespadolsey/PhotoWall
+ */
 
 PhotoWall = (function() {
     
