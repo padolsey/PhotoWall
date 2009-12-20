@@ -130,7 +130,7 @@ PhotoWall = (function() {
             
             highestPoints = [{x:0,y:0}],
             occupied = [];
-        
+            
         // Fill with empty arrays x
         fill(occupied, 0, height, function(){
             return fill([], 0, width, false);
@@ -156,7 +156,6 @@ PhotoWall = (function() {
                 wx - x < ops.maxImgWidth && // Max width check
                 Math.round((wx-x) / whRatio) < Math.min(ops.maxImgHeight, height-y) // Max height check
             ) {}
-            //while ( occupied[++hy] && occupied[hy][x] === false && hy - y < 200 ) {}
             
             position = {
                 top : y,
@@ -219,7 +218,11 @@ PhotoWall = (function() {
                     if (++loaded === len) {
                         init();
                     }
-                    delete this.onload;
+                    try {
+                        delete this.onload;
+                    } catch(e) {
+                        this.onload = null;
+                    }
                 };
             };
             
@@ -227,11 +230,12 @@ PhotoWall = (function() {
             
             img = createElement('img', {
                 src: imgs[i],
-                css: { display: 'none' }
+                css: { position: 'absolute', top: -9999, left: -9999 }
             });
             
             document.body.insertBefore(img, document.body.firstChild);
             
+            // Wait for img to load, before derermining dimensions
             if ( img.complete ) {
                 loadedFn(i).call(img);
             } else {
