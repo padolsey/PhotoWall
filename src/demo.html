@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>Photo Wall</title>
+            <style type="text/css">
+                #contain {
+                    width: 1400px;
+                    height: 800px;
+                    border: 1px solid black;
+                    position: relative;
+                    background: black;
+                }
+            </style>
+    </head>
+    <body>
+        
+        <script src="photowall.js"></script>
+        <script>
+            new PhotoWall({
+                imgs: ['a.jpg','b.jpg','c.jpg'],
+                inject: function() {
+                    document.body.appendChild(this);
+                },
+                width: 1000,
+                height: 700
+            });
+        </script>
+        
+    </body>
+</html>
